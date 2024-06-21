@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     private float camVelocity;
     public float camSpeed = 0.4f;
     private Vector3 offset;
-    
+
+    public float playerzSpeed = 15f;
 
     private void Start()
     {
@@ -54,6 +55,11 @@ public class PlayerController : MonoBehaviour
                     ref velocity, speed * Time.deltaTime), player.position.y, player.position.z);
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        player.position += Vector3.forward * playerzSpeed * Time.fixedDeltaTime;
     }
 
     private void LateUpdate()
