@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1650005109520837152}
   m_Layer: 0
   m_Name: GroundSprite
-  m_TagString: Untagged
+  m_TagString: Track
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.15802, y: 0.25163, z: 12.3}
-  m_LocalScale: {x: 1.5943704, y: 1.5943704, z: 1.5943704}
+  m_LocalScale: {x: 3.0099254, y: 3.0099254, z: 3.0099254}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8413581956223966458}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8d96d9da0c0cd45b990422f9bd54be05, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a311cc0f422c64749ac4d3c8e0f93743, type: 3}
+  m_Color: {r: 1, g: 0.3264463, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1429191025868460227}
   - component: {fileID: 1828110615252903286}
   - component: {fileID: 550049409074165242}
-  - component: {fileID: 2013577500727067276}
+  - component: {fileID: 8888639269184743786}
   m_Layer: 0
   m_Name: SpawnTrigger
   m_TagString: Untagged
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 4756798162396575859}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.21378121, y: 3.7005212, z: -0.33766973}
+  m_LocalPosition: {x: 0.21378121, y: 0.8, z: -0.34}
   m_LocalScale: {x: 11.988945, y: 2.2347376, z: 0.6272067}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -135,7 +135,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4756798162396575859}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -191,7 +191,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2013577500727067276
+--- !u!114 &8888639269184743786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,8 +200,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4756798162396575859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 835db85ce7a264058bb3d60d30fdac52, type: 3}
+  m_Script: {fileID: 11500000, guid: 573ccccbafce34988b9798bdb52a4404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  track: {fileID: 3445346290749706881}
+  poolManager: {fileID: 2448409286274562594, guid: 2fb95943eaa1f48a4ab09399a7683542, type: 3}
   spawned: 0
