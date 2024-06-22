@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public float returnRotationSpeed = 2f; // Speed for returning to the neutral rotation
     public float maxRotationAngle = 45f; // Maximum angle to rotate
 
+    private TrailRenderer trailRenderer;
+
     private void Start()
     {
         mainCam = Camera.main;
@@ -33,6 +35,25 @@ public class PlayerController : MonoBehaviour
         offset = mainCam.transform.position - player.position;
 
         previousPosition = player.position; // Initialize the previous position
+
+        // Get the TrailRenderer component and disable it
+        trailRenderer = GetComponent<TrailRenderer>();
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = false; // Disable the TrailRenderer initially
+        }
+
+        // Start the coroutine to enable the TrailRenderer after 1 second
+        StartCoroutine(EnableTrailRendererAfterDelay(1f));
+    }
+
+    private IEnumerator EnableTrailRendererAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (trailRenderer != null)
+        {
+            trailRenderer.enabled = true; // Enable the TrailRenderer after the delay
+        }
     }
 
     private void Update()
