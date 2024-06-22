@@ -19,7 +19,7 @@ public class SpawnGroundFromPool : MonoBehaviour
 
             Vector3 pos = new Vector3(transform.parent.position.x,
                                      transform.parent.position.y,
-                                     transform.parent.position.z + 53.3f);
+                                     transform.parent.position.z + 75.7f);
             GameObject newGround = poolManager.GetObjectFromPool();
 
             if (newGround != null)

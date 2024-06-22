@@ -5,18 +5,18 @@ using UnityEngine;
 public class ObjectPoolManager : MonoBehaviour
 {
     public GameObject objectPrefab;
-    public int poolSize = 10; // Adjust as needed
+    public int initialPoolSize = 10;
 
     private Queue<GameObject> objectPool = new Queue<GameObject>();
 
     void Start()
     {
-        InitializePool();
+        InitializePool(initialPoolSize);
     }
 
-    void InitializePool()
+    void InitializePool(int size)
     {
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < size; i++)
         {
             GameObject obj = Instantiate(objectPrefab);
             obj.SetActive(false);
@@ -33,19 +33,20 @@ public class ObjectPoolManager : MonoBehaviour
         }
 
         GameObject obj = objectPool.Dequeue();
-        obj.SetActive(true); // Make sure the object is set active when retrieved
+        obj.SetActive(true);
         return obj;
     }
 
     private void ExpandPool()
     {
-        int currentPoolSize = objectPool.Count;
-        for (int i = 0; i < poolSize - currentPoolSize; i++)
+        int newObjectsCount = initialPoolSize; // Add the same amount of objects as the initial pool size
+        for (int i = 0; i < newObjectsCount; i++)
         {
             GameObject newObj = Instantiate(objectPrefab);
             newObj.SetActive(false);
             objectPool.Enqueue(newObj);
         }
+        Debug.Log($"Expanded pool size by {newObjectsCount} objects.");
     }
 
     public void ReturnObjectToPool(GameObject obj)

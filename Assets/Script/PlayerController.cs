@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
 
     public float playerzSpeed = 15f;
 
+    private Vector3 previousPosition;
+    public float rotationSpeed = 5f;
+    public float returnRotationSpeed = 2f; // Speed for returning to the neutral rotation
+    public float maxRotationAngle = 45f; // Maximum angle to rotate
+
     private void Start()
     {
         mainCam = Camera.main;
@@ -27,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
         offset = mainCam.transform.position - player.position;
 
+        previousPosition = player.position; // Initialize the previous position
     }
 
     private void Update()
@@ -35,10 +41,19 @@ public class PlayerController : MonoBehaviour
         {
             moveTheBall = true;
 
-        }else if (Input.GetMouseButtonUp(0))
+            // Capture the initial positions when the mouse button is pressed
+            Plane newPlane = new Plane(Vector3.up, 0.8f);
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
+            if (newPlane.Raycast(ray, out var distance))
+            {
+                firstMousePos = ray.GetPoint(distance);
+                firstPlayerPos = player.position;
+            }
+
+        }
+        else if (Input.GetMouseButtonUp(0))
         {
             moveTheBall = false;
-
         }
 
         if (moveTheBall)
@@ -46,14 +61,31 @@ public class PlayerController : MonoBehaviour
             Plane newPlane = new Plane(Vector3.up, 0.8f);
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
-            if(newPlane.Raycast(ray, out var distance))
+            if (newPlane.Raycast(ray, out var distance))
             {
-                Vector3 newMousePos = ray.GetPoint(distance) - firstMousePos;
-                Vector3 newPlayerPos = newMousePos + firstPlayerPos;
+                Vector3 newMousePos = ray.GetPoint(distance);
+                Vector3 deltaMousePos = newMousePos - firstMousePos;
+                Vector3 newPlayerPos = deltaMousePos + firstPlayerPos;
                 newPlayerPos.x = Mathf.Clamp(newPlayerPos.x, -roadEndPoint, roadEndPoint);
                 player.position = new Vector3(Mathf.SmoothDamp(player.position.x, newPlayerPos.x,
                     ref velocity, speed * Time.deltaTime), player.position.y, player.position.z);
+
+                // Determine the direction of movement
+                Vector3 direction = newPlayerPos - previousPosition;
+                if (direction != Vector3.zero)
+                {
+                    float angle = Mathf.Clamp(direction.x * rotationSpeed, -maxRotationAngle, maxRotationAngle);
+                    Quaternion targetRotation = Quaternion.Euler(0, angle, 0);
+                    player.rotation = Quaternion.Lerp(player.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+                }
+
+                previousPosition = player.position; // Update the previous position
             }
+        }
+        else
+        {
+            // Smoothly reset rotation to zero when not moving
+            player.rotation = Quaternion.Lerp(player.rotation, Quaternion.identity, Time.deltaTime * returnRotationSpeed);
         }
     }
 
@@ -66,6 +98,6 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 newCamPos = mainCam.transform.position;
         mainCam.transform.position = new Vector3(Mathf.SmoothDamp(newCamPos.x, player.position.x, ref camVelocity,
-            camSpeed * Time.deltaTime),newCamPos.y,player.position.z+offset.z);
+            camSpeed * Time.deltaTime), newCamPos.y, player.position.z + offset.z);
     }
 }
