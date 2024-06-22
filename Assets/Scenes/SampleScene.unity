@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &131512137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4243180137608296237, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+  m_PrefabInstance: {fileID: 1212106308}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa8a46d978274cc691676678a2f8af5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +191,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 20.18
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -321,6 +332,67 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &1212106308
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2472967633979551859, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472967633979551859, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472967633979551859, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472967633979551859, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472967633979551859, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472967633979551859, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472967633979551859, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472967633979551859, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472967633979551859, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2472967633979551859, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3969028793957285456, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: m_Name
+      value: ObstaclePoolManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4243180137608296237, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+      propertyPath: poolSize
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
 --- !u!1 &1225538736
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +491,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1690784007, guid: 3dab3dcd169944ebb8c2769fa5794220, type: 3}
-  m_Color: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
+  m_Color: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -465,7 +537,7 @@ MonoBehaviour:
   speed: 4
   roadEndPoint: 9.5
   camSpeed: 0.4
-  playerzSpeed: 15
+  playerzSpeed: 10
   rotationSpeed: 15
   returnRotationSpeed: 2
   maxRotationAngle: 75
@@ -489,7 +561,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 2.73}
 --- !u!23 &1465605829
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -965,18 +1037,6 @@ PrefabInstance:
       value: GroundSprite
       objectReference: {fileID: 0}
     - target: {fileID: 6471601446385699942, guid: a403b5d7de003425b8f9bffb3c4bb263, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 7.396815
-      objectReference: {fileID: 0}
-    - target: {fileID: 6471601446385699942, guid: a403b5d7de003425b8f9bffb3c4bb263, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 7.396815
-      objectReference: {fileID: 0}
-    - target: {fileID: 6471601446385699942, guid: a403b5d7de003425b8f9bffb3c4bb263, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 7.396815
-      objectReference: {fileID: 0}
-    - target: {fileID: 6471601446385699942, guid: a403b5d7de003425b8f9bffb3c4bb263, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.0824
       objectReference: {fileID: 0}
@@ -1016,6 +1076,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8888639269184743786, guid: a403b5d7de003425b8f9bffb3c4bb263, type: 3}
+      propertyPath: obstaclePoolManager
+      value: 
+      objectReference: {fileID: 131512137}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1088,3 +1152,4 @@ SceneRoots:
   - {fileID: 7768888478876047542}
   - {fileID: 4445914987964445721}
   - {fileID: 4046550480271362246}
+  - {fileID: 1212106308}

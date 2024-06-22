@@ -7,6 +7,7 @@ TagManager:
   - Track
   - Collectible
   - Obstacle
+  - ObstaclePosition
   layers:
   - Default
   - TransparentFX
