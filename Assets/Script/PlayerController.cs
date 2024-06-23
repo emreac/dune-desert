@@ -4,36 +4,44 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //Animator
+    public Animator c2Animator;
+
+    //Player Movement
     public float speed;
     private float velocity;
     private Camera mainCam;
     public float roadEndPoint;
-
     private Transform player;
     private Vector3 firstMousePos, firstPlayerPos;
 
+    //Player State
     private bool moveTheBall;
+    private bool isGameOver;
 
+    //Camera
     private float camVelocity;
     public float camSpeed = 0.4f;
     private Vector3 offset;
 
+    //Player Speed
     public float playerzSpeed = 15f;
 
+    //Rotation
     private Vector3 previousPosition;
     public float rotationSpeed = 5f;
     public float returnRotationSpeed = 2f; // Speed for returning to the neutral rotation
     public float maxRotationAngle = 45f; // Maximum angle to rotate
 
+    //Trail Renderer
     private TrailRenderer trailRenderer;
 
     private void Start()
     {
+        c2Animator.Rebind();
         mainCam = Camera.main;
         player = this.transform;
-
         offset = mainCam.transform.position - player.position;
-
         previousPosition = player.position; // Initialize the previous position
 
         // Get the TrailRenderer component and disable it
@@ -58,6 +66,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isGameOver) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             moveTheBall = true;
@@ -70,7 +80,6 @@ public class PlayerController : MonoBehaviour
                 firstMousePos = ray.GetPoint(distance);
                 firstPlayerPos = player.position;
             }
-
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -112,6 +121,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isGameOver) return;
         player.position += Vector3.forward * playerzSpeed * Time.fixedDeltaTime;
     }
 
@@ -120,5 +130,15 @@ public class PlayerController : MonoBehaviour
         Vector3 newCamPos = mainCam.transform.position;
         mainCam.transform.position = new Vector3(Mathf.SmoothDamp(newCamPos.x, player.position.x, ref camVelocity,
             camSpeed * Time.deltaTime), newCamPos.y, player.position.z + offset.z);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Obstacle")
+        {
+            c2Animator.SetTrigger("isDead");
+            isGameOver = true;
+            GameManager.instance.GameOver();
+        }
     }
 }
