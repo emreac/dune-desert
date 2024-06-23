@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class ObstacleReturner : MonoBehaviour
 {
-    public ObstaclePoolManager obstaclePoolManager; // Assign this in the Inspector
+    private Transform eraser;
+    private float velocity;
+    public float eraserzSpeed = 5f;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Obstacle"))
+        if (other.CompareTag("Eraser"))
         {
-            Debug.Log("Obstacle exiting, returning to pool: " + other.gameObject.name);
-            obstaclePoolManager.ReturnObjectToPool(other.gameObject);
+            Debug.Log("Eraser!");
+            Destroy(this.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        eraser = transform;
+    }
+    private void FixedUpdate()
+    {
+        eraser.position += Vector3.forward * eraserzSpeed * Time.fixedDeltaTime;
     }
 }

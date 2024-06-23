@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,15 +25,19 @@ public class ObjectPoolManager : MonoBehaviour
 
     public GameObject GetObjectFromPool()
     {
-        if (objectPool.Count == 0)
+        while (objectPool.Count > 0)
         {
-            Debug.LogWarning("Object pool exhausted. Increasing pool size.");
-            ExpandPool();
+            GameObject obj = objectPool.Dequeue();
+            if (obj != null)
+            {
+                obj.SetActive(true);
+                return obj;
+            }
         }
 
-        GameObject obj = objectPool.Dequeue();
-        obj.SetActive(true);
-        return obj;
+        Debug.LogWarning("Object pool exhausted. Increasing pool size.");
+        ExpandPool();
+        return GetObjectFromPool();
     }
 
     private void ExpandPool()
@@ -51,7 +54,14 @@ public class ObjectPoolManager : MonoBehaviour
 
     public void ReturnObjectToPool(GameObject obj)
     {
-        obj.SetActive(false);
-        objectPool.Enqueue(obj);
+        if (obj != null)
+        {
+            obj.SetActive(false);
+            objectPool.Enqueue(obj);
+        }
+        else
+        {
+            Debug.LogWarning("Attempted to return a null object to the pool.");
+        }
     }
 }

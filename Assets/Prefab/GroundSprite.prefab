@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3391368135275674961
 Transform:
   m_ObjectHideFlags: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411e3b05d84e142a5b63964c0a44e9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePoolManager: {fileID: 4243180137608296237, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+  eraserzSpeed: 5
 --- !u!1 &2400503252812103962
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6433429751468890568
 Transform:
   m_ObjectHideFlags: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411e3b05d84e142a5b63964c0a44e9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePoolManager: {fileID: 4243180137608296237, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+  eraserzSpeed: 5
 --- !u!1 &2775692958847545340
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &990938263684541481
 Transform:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411e3b05d84e142a5b63964c0a44e9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePoolManager: {fileID: 4243180137608296237, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+  eraserzSpeed: 5
 --- !u!1 &3445346290749706881
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +145,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6471601446385699942}
   - component: {fileID: 1650005109520837152}
+  - component: {fileID: 6932411222679270165}
+  - component: {fileID: 6770145183665451608}
+  - component: {fileID: 4410955858313734381}
   m_Layer: 0
   m_Name: GroundSprite
   m_TagString: Track
@@ -227,6 +230,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &6932411222679270165
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445346290749706881}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.12, y: 10.240003, z: 0.20000005}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6770145183665451608
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445346290749706881}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &4410955858313734381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3445346290749706881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069abb00ec2b348878c156eecb59df68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4756798162396575859
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +302,7 @@ GameObject:
   - component: {fileID: 1429191025868460227}
   - component: {fileID: 1828110615252903286}
   - component: {fileID: 550049409074165242}
-  - component: {fileID: 8888639269184743786}
+  - component: {fileID: 2066320548683051650}
   m_Layer: 0
   m_Name: SpawnTrigger
   m_TagString: Untagged
@@ -333,7 +396,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8888639269184743786
+--- !u!114 &2066320548683051650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,13 +405,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4756798162396575859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 573ccccbafce34988b9798bdb52a4404, type: 3}
+  m_Script: {fileID: 11500000, guid: 835db85ce7a264058bb3d60d30fdac52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolManager: {fileID: 2448409286274562594, guid: 2fb95943eaa1f48a4ab09399a7683542, type: 3}
-  obstaclePoolManager: {fileID: 4243180137608296237, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+  track: {fileID: 3445346290749706881}
   spawned: 0
-  maxObstacles: 5
 --- !u!1 &5525660998797942328
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7986730031249367406
 Transform:
   m_ObjectHideFlags: 0
@@ -393,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411e3b05d84e142a5b63964c0a44e9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePoolManager: {fileID: 4243180137608296237, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+  eraserzSpeed: 5
 --- !u!1 &5636377416299868049
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4573365939797937396
 Transform:
   m_ObjectHideFlags: 0
@@ -438,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411e3b05d84e142a5b63964c0a44e9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePoolManager: {fileID: 4243180137608296237, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+  eraserzSpeed: 5
 --- !u!1 &6974041066557654025
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7255646300397091536
 Transform:
   m_ObjectHideFlags: 0
@@ -483,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411e3b05d84e142a5b63964c0a44e9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePoolManager: {fileID: 4243180137608296237, guid: 62f4adfa51aa646e7a9d9e071581479c, type: 3}
+  eraserzSpeed: 5
 --- !u!1 &8239013927151794205
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7127127506884140755
 Transform:
   m_ObjectHideFlags: 0

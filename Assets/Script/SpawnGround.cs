@@ -12,7 +12,7 @@ public class SpawnGround : MonoBehaviour
         if (other.tag == "Player"&& !spawned)
         {
             Vector3 pos = new Vector3(transform.parent.position.x, (transform.parent.position.y),
-                (transform.parent.position.z + 53.3f));
+                (transform.parent.position.z + 75.7f));
             Instantiate(track.transform, pos, transform.parent.rotation);
             spawned = true;
         }

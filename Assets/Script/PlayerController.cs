@@ -1,57 +1,51 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    //Animator
     public Animator c2Animator;
-
-    //Player Movement
     public float speed;
     private float velocity;
     private Camera mainCam;
     public float roadEndPoint;
+
+    public GameObject gameOverUI;
     private Transform player;
     private Vector3 firstMousePos, firstPlayerPos;
-
-    //Player State
     private bool moveTheBall;
     private bool isGameOver;
 
-    //Camera
     private float camVelocity;
     public float camSpeed = 0.4f;
     private Vector3 offset;
 
-    //Player Speed
     public float playerzSpeed = 15f;
-
-    //Rotation
     private Vector3 previousPosition;
     public float rotationSpeed = 5f;
-    public float returnRotationSpeed = 2f; // Speed for returning to the neutral rotation
-    public float maxRotationAngle = 45f; // Maximum angle to rotate
+    public float returnRotationSpeed = 2f;
+    public float maxRotationAngle = 45f;
 
-    //Trail Renderer
     private TrailRenderer trailRenderer;
 
     private void Start()
     {
-        c2Animator.Rebind();
-        mainCam = Camera.main;
-        player = this.transform;
-        offset = mainCam.transform.position - player.position;
-        previousPosition = player.position; // Initialize the previous position
+        if (c2Animator == null)
+        {
+            Debug.LogError("Animator not assigned");
+        }
 
-        // Get the TrailRenderer component and disable it
+        mainCam = Camera.main;
+        player = transform;
+        offset = mainCam.transform.position - player.position;
+        previousPosition = player.position;
+
         trailRenderer = GetComponent<TrailRenderer>();
         if (trailRenderer != null)
         {
-            trailRenderer.enabled = false; // Disable the TrailRenderer initially
+            trailRenderer.enabled = false;
         }
 
-        // Start the coroutine to enable the TrailRenderer after 1 second
         StartCoroutine(EnableTrailRendererAfterDelay(1f));
     }
 
@@ -60,7 +54,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         if (trailRenderer != null)
         {
-            trailRenderer.enabled = true; // Enable the TrailRenderer after the delay
+            trailRenderer.enabled = true;
         }
     }
 
@@ -71,8 +65,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             moveTheBall = true;
-
-            // Capture the initial positions when the mouse button is pressed
             Plane newPlane = new Plane(Vector3.up, 0.8f);
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
             if (newPlane.Raycast(ray, out var distance))
@@ -100,7 +92,6 @@ public class PlayerController : MonoBehaviour
                 player.position = new Vector3(Mathf.SmoothDamp(player.position.x, newPlayerPos.x,
                     ref velocity, speed * Time.deltaTime), player.position.y, player.position.z);
 
-                // Determine the direction of movement
                 Vector3 direction = newPlayerPos - previousPosition;
                 if (direction != Vector3.zero)
                 {
@@ -109,12 +100,11 @@ public class PlayerController : MonoBehaviour
                     player.rotation = Quaternion.Lerp(player.rotation, targetRotation, Time.deltaTime * rotationSpeed);
                 }
 
-                previousPosition = player.position; // Update the previous position
+                previousPosition = player.position;
             }
         }
         else
         {
-            // Smoothly reset rotation to zero when not moving
             player.rotation = Quaternion.Lerp(player.rotation, Quaternion.identity, Time.deltaTime * returnRotationSpeed);
         }
     }
@@ -134,11 +124,25 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Obstacle")
+        if (other.gameObject.CompareTag("Obstacle"))
         {
             c2Animator.SetTrigger("isDead");
             isGameOver = true;
-            GameManager.instance.GameOver();
+            StartCoroutine(GameOverSequence());
+           
         }
+    }
+    private IEnumerator GameOverSequence()
+    {
+
+        yield return new WaitForSeconds(0.5f);
+        gameOverUI.SetActive(true);
+    }
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        isGameOver = false;
+        // Load the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

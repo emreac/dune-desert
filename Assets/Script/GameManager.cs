@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
+using System.Collections;   
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject gameOverUI;
-    private bool isGameOver;
+
+    private bool isGameOver = false;
 
     void Awake()
     {
@@ -23,7 +24,22 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        gameOverUI.SetActive(false);
+        // Assign game over UI on scene start
+        AssignGameOverUI();
+    }
+
+    public void AssignGameOverUI()
+    {
+        // Find the game over UI in the scene
+        gameOverUI = GameObject.Find("GameOverUI");
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Game Over UI is not assigned in the scene.");
+        }
     }
 
     public void GameOver()
@@ -37,17 +53,24 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameOverSequence()
     {
         yield return new WaitForSeconds(0.5f);
-        gameOverUI.SetActive(true);
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Game Over UI is not assigned.");
+        }
         yield return new WaitForSeconds(1f);
         Time.timeScale = 0f;
     }
 
-   
-
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        isGameOver = false;
+        // Load the current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitToMainMenu()
