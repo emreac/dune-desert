@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa11ec82e9746928e211e7f096812ca, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  gameAnalyticsIosGameKey: 
+  gameAnalyticsIosSecretKey: 
+  gameAnalyticsAndroidGameKey: 9c5529a93b11caa8936735885e004db5
+  gameAnalyticsAndroidSecretKey: 08f26e9ca62aa245f1f93122b278ded3231f3000
+  facebookAppId: 1008556857555445
+  facebookClientToken: 8ee81407337a60333cf2b1e7b627e0bd
+  adjustIOSToken: 
+  adjustAndroidToken: 9wdphyvw622o
+  EditorIdfa: eded3f05-c1ee-4ad3-ae63-43c9cf29afd2
+  UseRemoteConfig: 0
+  UseVoodooAnalytics: 1
+  companyName: Childish Colors
+  privacyPolicyURL: https://childishcolors.com/dunedesert.html
+  developerContactEmail: childishcolors@gmail.com
